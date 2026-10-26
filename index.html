@@ -7,32 +7,101 @@
         
   </head>
   <body>
-   <h1>Moje první stránka</h1>
+   <h1 class="w3-monospace" style="padding-left: 20px;">Moje první stránka</h1>
    
   
    
 
-   <nav>
-   <ul>
-  <input class="w3-button w3-black" type="button" value="Input Button">
-
-  <button class="w3-button w3-black">Button</button>
-
-  <a href="index.html" class="w3-button w3-black">ÚVOD</a>
-
-   <li><a href="tabulka.html">Tabulka</a></li>
-   <li><a href="seznamy.html">Seznamy</a></li>
-   <li><a href="https://www.cmgpv.cz/">CMG</a> </li>
-   </ul>
-   </nav>
+ <nav class="w3-row w3-black">
+  <a href="index.html" class="w3-col s3 w3-button w3-black">ÚVOD</a>
+  <a href="tabulka.html" class="w3-col s3 w3-button w3-black">Tabulka</a>
+  <a href="seznamy.html" class="w3-col s3 w3-button w3-black">Seznamy</a>
+  <a href="https://www.cmgpv.cz/" class="w3-col s3 w3-button w3-black">CMG</a>
+</nav>
   <main>
+
+  <div class="w3-flex" style="padding: 20px;">
    <img  src="budova.PNG" alt="budova.PNG, 414kB" title="budova" height="357" width="478">
-  <p>Cyrilometodějské gymnázium, základní škola a mateřská škola v Prostějově (CMG) je 
+  <containter style="padding-left: 20px;">
+   <p style="padding-left: 20px;">Cyrilometodějské gymnázium, základní škola a mateřská škola v Prostějově (CMG) je 
   církevní osmileté gymnázium, 2. stupeň základní školy a mateřská škola pro děti všech rodičů, 
-  kterým záleží na kvalitním vzdělání a křesťanské výchově jejich dětí. dih 
+  kterým záleží na kvalitním vzdělání a křesťanské výchově jejich dětí.
   </p> 
+  <img  src="cmg1.jpg" alt="logo.PNG, 414kB" title="logo" height="257" width="478">
+  <img  src="2024-ples-plakat.jpg" alt="logo.PNG, 414kB" title="logo" height="257" width="478">
+  <img  src="vychovane-osobnosti.jpg" alt="logo.PNG, 414kB" title="logo" height="257" width="478">
+  </containter>
+</div> 
+    <div  class="w3-card w3-container w3-padding">
+      <!-- 1. MOŽNOST: POŠLU DÍTĚ -->
+      <div class="poll-card yes">
+        <div class="poll-title">Pošlu dítě na vaši školu</div>
+        <div class="count-display" id="yes-count">0</div>
+        <button id="yes-btn" class="btn btn-yes">Ano, pošlu</button>
+      </div>
+
+      <!-- 2. MOŽNOST: NEPOŠLU DÍTĚ -->
+      <div class="poll-card no">
+        <div class="poll-title">Nepošlu dítě na vaši školu</div>
+        <div class="count-display" id="no-count">0</div>
+        <button id="no-btn" class="btn btn-no">Ne, nepošlu</button>
+      </div>
+    </div>
+
+  <!-- Firebase JavaScript Skript -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, doc, onSnapshot, updateDoc, increment, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // 1. Nahraďte vlastními údaji z Firebase Console
+    const firebaseConfig = {
+      apiKey: "VASE_API_KEY",
+      projectId: "VAS_PROJECT_ID"
+    };
+
+    // Inicializace
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    
+    // Odkaz na dokument "school_survey" v kolekci "polls"
+    const pollRef = doc(db, "polls", "school_survey");
+
+    // HTML Prvky
+    const yesCountEl = document.getElementById("yes-count");
+    const noCountEl  = document.getElementById("no-count");
+    const yesBtn     = document.getElementById("yes-btn");
+    const noBtn      = document.getElementById("no-btn");
+
+    // 2. ŽIVÝ POSLUCHAČ: Načítá a aktualizuje obě čísla v reálném čase
+    onSnapshot(pollRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        yesCountEl.textContent = data.yes || 0;
+        noCountEl.textContent  = data.no  || 0;
+      } else {
+        // Vytvoří výchozí stav (0:0), pokud ještě v databázi neexistuje
+        setDoc(pollRef, { yes: 0, no: 0 });
+      }
+    });
+
+    // 3. OBSLUHA KLIKNUTÍ: Přičtení bodu k 1. možnosti
+    yesBtn.addEventListener("click", async () => {
+      await updateDoc(pollRef, {
+        yes: increment(1)
+      });
+    });
+
+    // 4. OBSLUHA KLIKNUTÍ: Přičtení bodu k 2. možnosti
+    noBtn.addEventListener("click", async () => {
+      await updateDoc(pollRef, {
+        no: increment(1)
+      });
+    });
+  </script>
+
 </main>
 <footer>Naposledy aktualizováno 11. 6. 2024
+</script>
 </footer>
   </body>
 </html>
