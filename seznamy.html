@@ -5,31 +5,42 @@
     <meta charset='utf-8'>
    <link rel="stylesheet" href="https://www.w3schools.com/w3css/6/w3.css">
   </head>
-  <body>
+  <body class="w3-container">
+ <button class="w3-button w3-black" onclick="darkMode()" style="float: right;">Přepnout na tmavý/světlý režim</button>
 
- <h1>Seznamy</h1>
+<script>
+function darkMode() {
+  document.body.classList.toggle("w3-dark-mode");
+}
+</script>
 
- <nav>
-  <a href="index.html">Úvod</a><br>
-   <a href="tabulka.html">Tabulka</a><br>
-   <a href="seznamy.html">Seznamy</a><br>
-  </nav> 
+ <h1 class="w3-wide" class="w3-serif" style="padding-left: 20px;">Seznamy</h1>
+
+ <nav class="w3-row w3-indigo" style="padding: 10px; padding-top: 20px;">
+  <a href="index.html" class="w3-col s3 w3-button w3-black">ÚVOD</a>
+  <a href="tabulka.html" class="w3-col s3 w3-button w3-black">Tabulka</a>
+  <a href="seznamy.html" class="w3-col s3 w3-button w3-black">Seznamy</a>
+  <a href="https://www.cmgpv.cz/" class="w3-col s3 w3-button w3-black">CMG</a>
+</nav>
   <main>
-  Programovací jazyky na naší škole:
-  <ul>
+  <h2  style="margin-top: 20px; padding-left: 20px;">Programovací jazyky</h2>
+  <ul class="w3-ul w3-card">
   <li>Scratch</li>
   <li>JavaScript</li>
   <li>PHP</li>
   <li>Python</li>
-  </ul>
+</ul>
   
-  <dl>
-  <dt>Programovací jazyk je</dt>
-  <dd>prostředek pro zápis algoritmů, jež mohou být provedeny na počítaci.
+  <div class="w3-card w3-round-large" style="margin-top: 20px; padding: 40px; width: 600px; margin-left: 20px;">
+  <dt>Programovací jazyk je...</dt>
+  <dd>...prostředek pro zápis algoritmů, jež mohou být provedeny na počítaci.
   Zápis algoritmu ve zvoleném programovacím jazyce se nazývá program</dd>
-  </dl>
-  Seznam jazyků podle počtu mluvčích:
-  <ol>
+  </div>
+
+
+  <h3  style="margin-top: 20px; padding-left: 20px;">Seznam jazyků podle počtu mluvčích: </h3>
+  <p style="padding-left: 20px;">Seznam jazyků podle počtu mluvčích je sestaven na základě odhadů počtu rodilých mluvčích a druhých mluvčích.
+  <ol class="w3-ul w3-card">
   <li>Čínština</li>
   <li>Španělština</li>
   <li>Angličtina</li>
@@ -38,6 +49,8 @@
   </ol>
 
     </main>
- 
+ <footer class="w3-container w3-black w3-center w3-padding-16" style="margin-top: 40px;">
+  <p>2026 Moje stránka | Naposledy aktualizováno: 11. 6. 2024</p>
+</footer>
   </body>
 </html>

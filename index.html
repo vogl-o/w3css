@@ -6,45 +6,92 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/6/w3.css">
         
   </head>
-  <body>
-   <h1 class="w3-monospace" style="padding-left: 20px;">Moje první stránka</h1>
-   
-  
-   
+ <body class="w3-container">
+  <button class="w3-button w3-black" onclick="darkMode()" style="float: right;">Přepnout na tmavý/světlý režim</button>
 
- <nav class="w3-row w3-black">
+<script>
+function darkMode() {
+  document.body.classList.toggle("w3-dark-mode");
+}
+</script>
+   <h1 class="w3-serif" class="w3-wide" style="padding-left: 20px;font-size: 4em;">Cyrilometodějské gymnázium</h1>
+
+<nav class="w3-row w3-indigo" style="padding: 10px; padding-top: 20px;"> 
   <a href="index.html" class="w3-col s3 w3-button w3-black">ÚVOD</a>
   <a href="tabulka.html" class="w3-col s3 w3-button w3-black">Tabulka</a>
   <a href="seznamy.html" class="w3-col s3 w3-button w3-black">Seznamy</a>
   <a href="https://www.cmgpv.cz/" class="w3-col s3 w3-button w3-black">CMG</a>
 </nav>
   <main>
+  <div class="w3-flex" style="padding: 20px; gap: 20px;">
+    
+  
+    <div style="width: 478px;">
+      <img src="budova.PNG" alt="budova" height="357" width="478">
+      <p style="margin-top: 10px;">
+        Naše gymnízium vzniklo 24. ledna 1992, ale vlastní budovu na adrese Komenského 17 škola získala a začala plně využívat po rekonstrukcích v roce 1998 (oficiálně převzala prostory v červenci 1998).
+      </p>
+    </div>
 
-  <div class="w3-flex" style="padding: 20px;">
-   <img  src="budova.PNG" alt="budova.PNG, 414kB" title="budova" height="357" width="478">
-  <containter style="padding-left: 20px;">
-   <p style="padding-left: 20px;">Cyrilometodějské gymnázium, základní škola a mateřská škola v Prostějově (CMG) je 
-  církevní osmileté gymnázium, 2. stupeň základní školy a mateřská škola pro děti všech rodičů, 
-  kterým záleží na kvalitním vzdělání a křesťanské výchově jejich dětí.
-  </p> 
-  <img  src="cmg1.jpg" alt="logo.PNG, 414kB" title="logo" height="257" width="478">
-  <img  src="2024-ples-plakat.jpg" alt="logo.PNG, 414kB" title="logo" height="257" width="478">
-  <img  src="vychovane-osobnosti.jpg" alt="logo.PNG, 414kB" title="logo" height="257" width="478">
-  </containter>
+    <div style="flex: 1;">
+      <p>
+        Cyrilometodějské gymnázium, základní škola a mateřská škola v Prostějově (CMG) je 
+        církevní osmileté gymnázium, 2. stupeň základní školy a mateřská škola pro děti všech rodičů, 
+        kterým záleží na kvalitním vzdělání a křesťanské výchově jejich dětí.
+      </p> 
+
+<h2>Zážitky z naší školy:</h2>
+
+<div class="w3-display-container">
+  <img class="mySlides" src="2024-ples-plakat.png" style="height:300px; margin: 0 auto;">
+  <img class="mySlides" src="cmg1.jpg" style="height:300px; margin: 0 auto;">
+  <img class="mySlides" src="vychovavame-osobnosti.jpg" style="height: 300px; margin: 0 auto;">
+
+  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+</div>
+
+<script>
+let slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  const slides = document.querySelectorAll(".mySlides");
+
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+
+  slides.forEach(slide => {
+    slide.style.display = "none";
+  });
+
+  slides[slideIndex - 1].style.display = "block";
+}
+</script>
+
+
+    </div>
+
+  </div>
 </div> 
+ <!-- AI ČÁST -->
     <div  class="w3-card w3-container w3-padding">
       <!-- 1. MOŽNOST: POŠLU DÍTĚ -->
       <div class="poll-card yes">
         <div class="poll-title">Pošlu dítě na vaši školu</div>
         <div class="count-display" id="yes-count">0</div>
-        <button id="yes-btn" class="btn btn-yes">Ano, pošlu</button>
+        <button id="yes-btn" class="w3-button w3-indigo">Ano, pošlu</button>
       </div>
 
       <!-- 2. MOŽNOST: NEPOŠLU DÍTĚ -->
       <div class="poll-card no">
         <div class="poll-title">Nepošlu dítě na vaši školu</div>
         <div class="count-display" id="no-count">0</div>
-        <button id="no-btn" class="btn btn-no">Ne, nepošlu</button>
+        <button id="no-btn" class="w3-button w3-indigo">Ne, nepošlu</button>
       </div>
     </div>
 
@@ -100,8 +147,8 @@
   </script>
 
 </main>
-<footer>Naposledy aktualizováno 11. 6. 2024
-</script>
+<footer class="w3-container w3-black w3-center w3-padding-16" style="margin-top: 40px;">
+  <p>2026 Moje stránka | Naposledy aktualizováno: 11. 6. 2024</p>
 </footer>
   </body>
 </html>
